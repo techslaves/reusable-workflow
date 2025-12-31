@@ -17,6 +17,5 @@ jobs:
         utsavgarg007/spring-boot-app:${{ github.sha }}
       push: true
     secrets:
-      REGISTRY_URL: hub.docker.com
       REGISTRY_USERNAME: $DOCKER_USERNAME
       REGISTRY_PASSWORD: $DOCKER_PASSWORD
