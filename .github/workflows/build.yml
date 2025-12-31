@@ -4,6 +4,10 @@ on:
   push:
     branches: [ main ]
 
+env:
+  DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+  DOCKER_PASSWORD: ${{ secrets. DOCKER_PASSWORD }}
+
 jobs:
   build:
     uses: ./.github/workflows/reusable-docker-build.yml
@@ -13,5 +17,5 @@ jobs:
         utsavgarg007/spring-boot-app:${{ github.sha }}
       push: true
     secrets:
-      REGISTRY_USERNAME: ${{ secrets.DOCKER_USERNAME }}
-      REGISTRY_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+      REGISTRY_USERNAME: $DOCKER_USERNAME
+      REGISTRY_PASSWORD: $DOCKER_PASSWORD
