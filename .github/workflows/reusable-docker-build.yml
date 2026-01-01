@@ -40,13 +40,14 @@ on:
       REGISTRY_URL:
         required: false
 
+permissions:
+    id-token: write
+    contents: read
+    attestations: write
+
 jobs:
   docker:
     runs-on: ubuntu-latest
-    permissions:
-      id-token: write
-      contents: read
-      attestations: write
 
     steps:
       - name: Checkout source
