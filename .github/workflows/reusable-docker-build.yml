@@ -43,6 +43,10 @@ on:
 jobs:
   docker:
     runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: read
+      attestations: write
 
     steps:
       - name: Checkout source
@@ -61,9 +65,16 @@ jobs:
 
       - name: Build (and optionally push)
         uses: docker/build-push-action@v5
+        id: build
         with:
           context: ${{ inputs.context }}
           file: ${{ inputs.dockerfile }}
           push: ${{ inputs.push }}
           tags: |
             ${{ inputs.tags }}
+      
+      - name: Attest
+        uses: actions/attest-build-provenance@v3
+        with:
+          subject-name: utsavgarg007/spring-boot-app
+          subject-digest: ${{ steps.build.outputs.digest }}
