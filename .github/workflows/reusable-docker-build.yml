@@ -79,3 +79,4 @@ jobs:
         with:
           subject-name: utsavgarg007/spring-boot-app
           subject-digest: ${{ steps.build.outputs.digest }}
+          push-to-registry: true
